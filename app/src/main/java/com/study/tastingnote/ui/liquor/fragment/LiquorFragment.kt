@@ -15,7 +15,6 @@ class LiquorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
         return inflater.inflate(R.layout.fragment_liquor, container, false)
     }
 }

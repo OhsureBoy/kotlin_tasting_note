@@ -9,12 +9,18 @@
     <item
         android:id="@+id/page_liquor"
         android:enabled="true"
-        android:icon="@drawable/ic_action_liquor"
-        android:title="술"/>
+        android:icon="@drawable/ic_action_music_note"
+        android:title="음악"/>
 
     <item
         android:id="@+id/page_liquor_list"
         android:enabled="true"
         android:icon="@drawable/ic_action_format_list_bulleted"
         android:title="목록"/>
+
+    <item
+        android:id="@+id/page_liquor_search"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_search"
+        android:title="검색"/>
 </menu>

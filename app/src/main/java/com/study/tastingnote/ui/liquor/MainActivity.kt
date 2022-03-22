@@ -42,24 +42,19 @@ class MainActivity : AppCompatActivity() , BottomNavigationView.OnNavigationItem
                 binding.viewPager.currentItem = 1
                 return true
             }
-            R.id.page_liquor_search-> {
-                binding.viewPager.currentItem = 2
-                return true
-            }
         }
         return false
     }
 
     private inner class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
-        override fun getItemCount(): Int = 3
+        override fun getItemCount(): Int = 2
 
         override fun createFragment(position: Int): Fragment {
 
             return when (position) {
                 0-> LiquorFragment()
                 1-> LiquorWriteListFragment()
-                2-> LiquorSearchFragment()
                 else -> error("No Fragment")
             }
         }
@@ -72,7 +67,6 @@ class MainActivity : AppCompatActivity() , BottomNavigationView.OnNavigationItem
             binding.bottomNavigationView.selectedItemId = when(position) {
                 0 -> R.id.page_liquor
                 1 -> R.id.page_liquor_list
-                2 -> R.id.page_liquor_search
                 else -> error("No id")
             }
         }

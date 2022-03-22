@@ -44,14 +44,14 @@ class LiquorFragment : Fragment() {
 
         binding.trackListRecyclerview.adapter =trackAdapter
 
-
-
-        viewModel.resetTrackList()
-        viewModel.liveTrackList.observe(binding.lifecycleOwner!!,{
-            Log.e("CHECK_TAG","track list change observed")
+        viewModel.liveTrackList.observe(binding.lifecycleOwner!!) {
             trackAdapter.setTrackList(it)
-        })
-        viewModel.searchNextTrack()
+        }
+
+        viewModel.musicString.observe(binding.lifecycleOwner!!) {
+            viewModel.resetTrackList()
+            viewModel.searchNextTrack()
+        }
         return binding.root
     }
 }

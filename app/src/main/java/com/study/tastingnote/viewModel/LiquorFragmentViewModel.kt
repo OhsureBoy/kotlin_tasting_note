@@ -17,6 +17,12 @@ class LiquorFragmentViewModel(private val repository: TrackRepository, private v
     private var pagingOffset : Int = 0
     private val trackList = ArrayList<TrackResult>()
 
+    val musicString: MutableLiveData<String> by lazy{
+        MutableLiveData<String>().apply {
+            value
+        }
+    }
+
     val liveTrackList: MutableLiveData<ArrayList<TrackResult>> by lazy{
         MutableLiveData<ArrayList<TrackResult>>()
     }
@@ -38,13 +44,13 @@ class LiquorFragmentViewModel(private val repository: TrackRepository, private v
 
             val favoriteTrackIds : List<Int> = roomDB.getAllId()
 
-            val term = "jay park"
+            val term = musicString.value
             val entity = "song"
             try {
-                val response = repository.searchTrack(term, entity, pagingLimit, pagingOffset)
-                Log.e("CHECK_TAG","response size : ${response.resultCount}")
+                val response =
+                    term?.let { repository.searchTrack(it, entity, pagingLimit, pagingOffset) }
 
-                for(track in response.results){
+                for(track in response!!.results){
                     var isFavorite = false
                     for(favoriteTrackId in favoriteTrackIds){//현재 track이 favorite이면 노란 별 체크
                         if(track.trackId==favoriteTrackId){

@@ -18,9 +18,4 @@
         android:icon="@drawable/ic_action_format_list_bulleted"
         android:title="목록"/>
 
-    <item
-        android:id="@+id/page_liquor_search"
-        android:enabled="true"
-        android:icon="@drawable/ic_action_search"
-        android:title="검색"/>
 </menu>

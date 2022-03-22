@@ -17,18 +17,19 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             android:clipToPadding="false"
-            android:overScrollMode="never"/>
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         <ProgressBar
             android:id="@+id/track_list_progressbar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="40dp"
+            android:indeterminate="true"
             android:visibility="invisible"
-            app:visibleIf="@{viewModel.isLoading}"
-            android:indeterminate="true"/>
+            app:layout_constraintBottom_toBottomOf="@+id/track_list_recyclerview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibleIf="@{viewModel.isLoading}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

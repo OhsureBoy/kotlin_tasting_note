@@ -11,16 +11,13 @@ import com.study.tastingnote.data.room.LiquorDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class LiquorFragmentViewModel : ViewModel() {
+class LiquorFragmentViewModel(private val repository: TrackRepository, private val roomDB: LiquorDao) : ViewModel() {
 
     private val pagingLimit : Int = 20
     private var pagingOffset : Int = 0
-    private lateinit var roomDB: LiquorDao
-    private lateinit var repository: TrackRepository
     private val trackList = ArrayList<TrackResult>()
 
-
-    private val liveTrackList: MutableLiveData<ArrayList<TrackResult>> by lazy{
+    val liveTrackList: MutableLiveData<ArrayList<TrackResult>> by lazy{
         MutableLiveData<ArrayList<TrackResult>>()
     }
     val isLoading: MutableLiveData<Boolean> by lazy {
@@ -34,17 +31,27 @@ class LiquorFragmentViewModel : ViewModel() {
         trackList.clear()
     }
 
+
     fun searchNextTrack(){
         viewModelScope.launch(Dispatchers.IO) {
             isLoading.postValue(true)
 
-            val term = "greenday"
+            val favoriteTrackIds : List<Int> = roomDB.getAllId()
+
+            val term = "jay park"
             val entity = "song"
             try {
                 val response = repository.searchTrack(term, entity, pagingLimit, pagingOffset)
                 Log.e("CHECK_TAG","response size : ${response.resultCount}")
 
                 for(track in response.results){
+                    var isFavorite = false
+                    for(favoriteTrackId in favoriteTrackIds){//현재 track이 favorite이면 노란 별 체크
+                        if(track.trackId==favoriteTrackId){
+                            isFavorite = true
+                            break
+                        }
+                    }
                     trackList.add(track)
                 }
                 liveTrackList.postValue(trackList)

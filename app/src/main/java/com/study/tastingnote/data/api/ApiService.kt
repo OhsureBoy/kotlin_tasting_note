@@ -1,6 +1,5 @@
 package com.study.tastingnote.data.api
 
-import com.study.tastingnote.data.model.Liquor
 import com.study.tastingnote.data.model.LiquorResponse
 import retrofit2.Response
 import retrofit2.http.GET

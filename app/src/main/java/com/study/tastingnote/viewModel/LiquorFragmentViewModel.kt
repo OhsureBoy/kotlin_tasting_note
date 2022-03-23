@@ -51,13 +51,14 @@ class LiquorFragmentViewModel(private val repository: TrackRepository, private v
                     term?.let { repository.searchTrack(it, entity, pagingLimit, pagingOffset) }
 
                 for(track in response!!.results){
-                    var isFavorite = false
+                    var isWirteList = false
                     for(favoriteTrackId in favoriteTrackIds){//현재 track이 favorite이면 노란 별 체크
                         if(track.trackId==favoriteTrackId){
-                            isFavorite = true
+                            isWirteList = true
                             break
                         }
                     }
+                    track.isWriteTrack = isWirteList
                     trackList.add(track)
                 }
                 liveTrackList.postValue(trackList)
@@ -71,21 +72,4 @@ class LiquorFragmentViewModel(private val repository: TrackRepository, private v
             }
         }
     }
-
-    // DB에서 해당 track을 favorites에서 삭제
-    fun deleteFavorite(liquor: Liquor){
-        viewModelScope.launch(Dispatchers.Default) {
-            roomDB.delete(liquor)
-            Log.e("CHECK_TAG", "star clicked : ${liquor.liquorName} 삭제")
-        }
-    }
-
-    //DB에서 해당 track을 favorites에 추가
-    fun insertFavorite(liquor: Liquor){
-        viewModelScope.launch(Dispatchers.Default) {
-            roomDB.insertTrack(liquor)
-            Log.e("CHECK_TAG", "star clicked : ${liquor.liquorName} 추가")
-        }
-    }
-
 }

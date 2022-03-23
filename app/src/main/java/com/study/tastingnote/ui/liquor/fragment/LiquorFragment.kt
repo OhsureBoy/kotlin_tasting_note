@@ -1,6 +1,8 @@
 package com.study.tastingnote.ui.liquor.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.study.tastingnote.R
 import com.study.tastingnote.adapter.TrackAdapter
+import com.study.tastingnote.data.model.TrackResult
 import com.study.tastingnote.databinding.FragmentLiquorBinding
+import com.study.tastingnote.ui.liquor.WriteTrackActivity
 import com.study.tastingnote.viewModel.LiquorFragmentViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.Serializable
 
 class LiquorFragment : Fragment() {
 
@@ -41,6 +46,16 @@ class LiquorFragment : Fragment() {
                 viewModel.searchNextTrack()
             }
         })
+
+        trackAdapter.setTouchItem(object: TrackAdapter.OnItemClickListener{
+            override fun onItemClick(track: TrackResult, position: Int) {
+                Intent(activity, WriteTrackActivity::class.java).apply {
+                    putExtra("track", track)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }.run { startActivity(this) }
+            }
+        })
+
 
         binding.trackListRecyclerview.adapter =trackAdapter
 

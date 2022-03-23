@@ -1,7 +1,6 @@
 package com.study.tastingnote.ui.liquor
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -13,7 +12,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.study.tastingnote.R
 import com.study.tastingnote.databinding.ActivityMainBinding
 import com.study.tastingnote.ui.liquor.fragment.LiquorFragment
-import com.study.tastingnote.ui.liquor.fragment.LiquorSearchFragment
 import com.study.tastingnote.ui.liquor.fragment.LiquorWriteListFragment
 
 class MainActivity : AppCompatActivity() , BottomNavigationView.OnNavigationItemSelectedListener {

@@ -17,6 +17,11 @@
             android:exported="true">
         </activity>
 
+        <activity
+            android:name=".ui.liquor.WriteTrackActivity"
+            android:exported="true">
+        </activity>
+
         <activity android:name=".ui.splash.SplashActivity"
             android:exported="true">
 

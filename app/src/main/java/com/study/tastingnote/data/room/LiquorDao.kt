@@ -10,7 +10,7 @@ interface LiquorDao {
     @Query("SELECT * FROM liquor_table")
     fun getAll(): List<Liquor>
 
-    @Query("SELECT liquorId FROM liquor_table")
+    @Query("SELECT trackId FROM liquor_table")
     fun getAllId(): List<Int>
 
     @Delete

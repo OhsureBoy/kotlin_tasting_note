@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="trackItem"
             type="com.study.tastingnote.data.model.TrackResult" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/list_item"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@color/white">
@@ -69,8 +70,20 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:text="@{trackItem.artistName}"
-            android:textSize="12sp"
-            android:textColor="@color/black" />
+            android:textSize="12sp"/>
+
+        <ImageButton
+            android:id="@+id/track_list_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:background="@color/white"
+            android:contentDescription="track_list_icon"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_action_format_list_bulleted"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

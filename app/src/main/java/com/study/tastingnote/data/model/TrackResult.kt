@@ -1,8 +1,11 @@
 package com.study.tastingnote.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
-data class TrackResult(
+@Parcelize
+data class TrackResult (
     @SerializedName(value = "trackId")
     val trackId: Int,
     @SerializedName(value = "trackName")
@@ -14,4 +17,5 @@ data class TrackResult(
     @SerializedName(value = "artworkUrl60")
     val ImageUrl: String,
 
-)
+    var isWriteTrack : Boolean = false
+): Parcelable

@@ -1,5 +1,6 @@
 package com.study.tastingnote.adapter
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -15,7 +16,7 @@ fun View.visibleIf(value: Boolean){
 }
 
 @BindingAdapter("trackImage")
-fun loadTrackImage(view: ImageView, imageUrl: String){
+fun loadTrackImage(view: ImageView, imageUrl: String?){
     Glide.with(view.context)
         .load(imageUrl)
         .placeholder(R.drawable.img_placeholder)
